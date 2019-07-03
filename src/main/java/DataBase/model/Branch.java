@@ -1,9 +1,11 @@
 package DataBase.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Branch {
     @Id
     private Integer codeBranch;
@@ -59,7 +61,7 @@ public class Branch {
         this.number = number;
     }
 
-    @OneToOne(optional = false, mappedBy = "bracnh")
+    @OneToOne(optional = false, mappedBy = "branch")
     private Contract contract;
 
     public Contract getContract() {

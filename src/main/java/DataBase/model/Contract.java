@@ -1,11 +1,10 @@
 package DataBase.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "contract")
 public class Contract {
     @Id
     private Integer codeContract;
@@ -20,7 +19,7 @@ public class Contract {
     private Date insuranceDate;
 
     @OneToOne(optional = false)
-    @JoinColumn(name="id", unique = true, nullable = false, updatable = false)
+    @JoinColumn(name="codeTariff_id", unique = true, nullable = false, updatable = false)
     private Tariff tariff;
 
     public Tariff getTariff() {
@@ -32,7 +31,7 @@ public class Contract {
     }
 
     @OneToOne(optional = false)
-    @JoinColumn(name="id", unique = true, nullable = false, updatable = false)
+    @JoinColumn(name="codeAgent_id", unique = true, nullable = false, updatable = false)
     private Agent agent;
 
     public Agent getAgent() {
@@ -43,8 +42,9 @@ public class Contract {
         this.agent = agent;
     }
 
+
     @OneToOne(optional = false)
-    @JoinColumn(name="id", unique = true, nullable=false, updatable = false)
+    @JoinColumn(name="codeBranch_id", unique = true, nullable=false, updatable = false)
     private Branch branch;
 
     public Branch getBranch() {

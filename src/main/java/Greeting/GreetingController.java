@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-@RestController(value = "/greeting")
+@RestController(value = "/gree")
 public class GreetingController {
 
     private static final String template = "Hello, %s!";
@@ -18,7 +18,7 @@ public class GreetingController {
                 String.format(template, name));
     }
 
-    @RequestMapping("/helloMOtherFucker")
+    @RequestMapping("/helloMOtherFucker.html")
     public Greeting hello(@RequestParam(value="name", defaultValue="hybrid") String name) {
         return new Greeting(counter.incrementAndGet(),
                 String.format(template, name));
