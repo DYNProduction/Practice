@@ -4,9 +4,10 @@ package DataBase.model;
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table (name = "user_database")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column

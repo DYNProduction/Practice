@@ -1,7 +1,7 @@
 package DataBase.repository;
 
 import DataBase.model.Branch;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BranchRepository extends CrudRepository<Branch, Integer> {
+public interface BranchRepository extends JpaRepository<Branch, Integer> {
 }
