@@ -2,7 +2,8 @@ package DataBase.services;
 
 import DataBase.model.User;
 import DataBase.repository.UserRepository;
-import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,15 +16,15 @@ public class UserService extends EntityCrud<User, UserRepository> {
         userRepository = repository;
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public User save(User newElement) {
-        try {
-            newElement.setPassword(DigestUtils.md2Hex(newElement.getPassword()));
-        }
-        catch (Exception ignored){
-        }
+        newElement.setPassword(passwordEncoder.encode(newElement.getPassword()));
 
         return userRepository.saveAndFlush(newElement);
     }
+
 
 }

@@ -7,13 +7,13 @@ import javax.persistence.*;
 @Table (name = "user_database")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column (nullable = false, unique = true)
     private String login;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
     public User(){
