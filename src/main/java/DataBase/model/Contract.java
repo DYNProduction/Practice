@@ -7,6 +7,10 @@ import java.util.Date;
 @Table(name = "contract")
 public class Contract {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(unique = true, nullable = false)
     private Integer codeContract;
 
     @Column
@@ -17,6 +21,60 @@ public class Contract {
 
     @Column
     private Date insuranceDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCodeContract() {
+        return codeContract;
+    }
+
+    public void setCodeContract(Integer codeContract) {
+        this.codeContract = codeContract;
+    }
+
+    public String getIncuranceType() {
+        return incuranceType;
+    }
+
+    public void setIncuranceType(String incuranceType) {
+        this.incuranceType = incuranceType;
+    }
+
+    public Double getInsuranceAmount() {
+        return insuranceAmount;
+    }
+
+    public void setInsuranceAmount(Double insuranceAmount) {
+        this.insuranceAmount = insuranceAmount;
+    }
+
+    public Date getInsuranceDate() {
+        return insuranceDate;
+    }
+
+    public void setInsuranceDate(Date insuranceDate) {
+        this.insuranceDate = insuranceDate;
+    }
+
+    public Contract() {
+    }
+
+    public Contract(Integer id, Integer codeContract, String incuranceType, Double insuranceAmount, Date insuranceDate, Tariff tariff, Agent agent, Branch branch) {
+        this.id = id;
+        this.codeContract = codeContract;
+        this.incuranceType = incuranceType;
+        this.insuranceAmount = insuranceAmount;
+        this.insuranceDate = insuranceDate;
+        this.tariff = tariff;
+        this.agent = agent;
+        this.branch = branch;
+    }
 
     @OneToOne(optional = false)
     @JoinColumn(name="codeTariff_id", unique = true, nullable = false, updatable = false)

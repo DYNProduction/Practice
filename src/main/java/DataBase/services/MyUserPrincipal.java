@@ -28,6 +28,8 @@ public class MyUserPrincipal implements UserDetails {
         return user.getLogin();
     }
 
+    // TODO
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

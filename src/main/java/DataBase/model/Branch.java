@@ -1,13 +1,14 @@
 package DataBase.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Branch {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(unique = true,nullable = false)
     private Integer codeBranch;
 
     @Column
@@ -19,12 +20,29 @@ public class Branch {
     @Column
     private String number;
 
+    public Branch(Integer id, Integer codeBranch, String name, String adress, String number, Contract contract) {
+        this.id = id;
+        this.codeBranch = codeBranch;
+        this.name = name;
+        this.adress = adress;
+        this.number = number;
+        this.contract = contract;
+    }
+
     public Integer getCodeBranch() {
         return codeBranch;
     }
 
     public void setCodeBranch(Integer codeBranch) {
         this.codeBranch = codeBranch;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -54,8 +72,8 @@ public class Branch {
     public Branch() {
     }
 
-    public Branch(Integer codeBranch, String name, String adress, String number) {
-        this.codeBranch = codeBranch;
+    public Branch(Integer id, String name, String adress, String number) {
+        this.id = id;
         this.name = name;
         this.adress = adress;
         this.number = number;

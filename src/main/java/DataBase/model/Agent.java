@@ -1,18 +1,16 @@
 package DataBase.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Agent {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String fullName;
 
     @Column
@@ -23,6 +21,14 @@ public class Agent {
 
     public Integer getId() {
         return id;
+    }
+
+    public Agent(Integer id, String fullName, String adress, String number, Contract contract) {
+        this.id = id;
+        this.fullName = fullName;
+        this.adress = adress;
+        this.number = number;
+        this.contract = contract;
     }
 
     public void setId(Integer id) {

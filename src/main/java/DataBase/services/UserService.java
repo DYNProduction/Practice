@@ -23,7 +23,14 @@ public class UserService extends EntityCrud<User, UserRepository> {
     public User save(User newElement) {
         newElement.setPassword(passwordEncoder.encode(newElement.getPassword()));
 
-        return userRepository.saveAndFlush(newElement);
+        return userRepository.save(newElement);
+    }
+
+    @Override
+    public User update (User newElement){
+        newElement.setPassword(passwordEncoder.encode(newElement.getPassword()));
+
+        return  userRepository.save(newElement);
     }
 
 

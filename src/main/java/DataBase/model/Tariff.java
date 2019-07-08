@@ -6,10 +6,10 @@ import javax.persistence.*;
 public class Tariff {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private Integer tariffRate;
 
     public Integer getId() {
@@ -29,6 +29,11 @@ public class Tariff {
     }
 
     public Tariff() {
+    }
+
+    public Tariff(Integer tariffRate, Contract contract) {
+        this.tariffRate = tariffRate;
+        this.contract = contract;
     }
 
     public Tariff(Integer id, Integer tariffRate) {

@@ -34,6 +34,6 @@ public class EntityCrud<T, E extends JpaRepository<T,Integer>> implements Entity
 
     @Override
     public T update(T newElement) {
-        return repository.saveAndFlush(newElement);
+        return  repository.saveAndFlush(newElement);
     }
 }
