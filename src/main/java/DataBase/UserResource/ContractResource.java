@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/contracts")
 public class ContractResource extends CrudResource<Contract, ContractService> {
 
-
-    public ContractResource(ContractService service) {
+    public ContractResource(ContractService service){
         super(service);
     }
 }

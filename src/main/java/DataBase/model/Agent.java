@@ -1,7 +1,10 @@
 package DataBase.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Agent {
@@ -28,7 +31,6 @@ public class Agent {
         this.fullName = fullName;
         this.adress = adress;
         this.number = number;
-        this.contract = contract;
     }
 
     public void setId(Integer id) {
@@ -69,14 +71,15 @@ public class Agent {
         this.number = number;
     }
 
-    @OneToOne(optional = false, mappedBy = "agent")
-    private Contract contract;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "agent")
+    private Set<Contract> contracts;
 
-    public Contract getContract() {
-        return contract;
+    @JsonIgnore
+    public Set<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 }

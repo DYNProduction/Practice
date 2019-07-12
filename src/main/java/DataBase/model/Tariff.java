@@ -1,6 +1,9 @@
 package DataBase.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Tariff {
@@ -31,9 +34,8 @@ public class Tariff {
     public Tariff() {
     }
 
-    public Tariff(Integer tariffRate, Contract contract) {
+    public Tariff(Integer tariffRate) {
         this.tariffRate = tariffRate;
-        this.contract = contract;
     }
 
     public Tariff(Integer id, Integer tariffRate) {
@@ -41,15 +43,16 @@ public class Tariff {
         this.tariffRate = tariffRate;
     }
 
-    @OneToOne(optional = false, mappedBy = "tariff")
-    private Contract contract;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tariff")
+    private Set<Contract> contracts;
 
-    public Contract getContract() {
-        return contract;
+    @JsonIgnore
+    public Set<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
 

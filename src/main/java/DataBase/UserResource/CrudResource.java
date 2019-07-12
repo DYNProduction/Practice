@@ -19,9 +19,9 @@ public class CrudResource<T, E extends EntityService> {
 
     @GetMapping
     public List getAll(){
-        return service.getAll();
+        List s=service.getAll();
+        return s;
     }
-
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public T save (@RequestBody T user){

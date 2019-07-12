@@ -3,6 +3,7 @@ package DataBase.model;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "contract")
 public class Contract {
@@ -14,7 +15,7 @@ public class Contract {
     private Integer codeContract;
 
     @Column
-    private String incuranceType;
+    private String insuranceType;
 
     @Column
     private Double insuranceAmount;
@@ -38,12 +39,12 @@ public class Contract {
         this.codeContract = codeContract;
     }
 
-    public String getIncuranceType() {
-        return incuranceType;
+    public String getInsuranceType() {
+        return insuranceType;
     }
 
-    public void setIncuranceType(String incuranceType) {
-        this.incuranceType = incuranceType;
+    public void setInsuranceType(String insuranceType) {
+        this.insuranceType = insuranceType;
     }
 
     public Double getInsuranceAmount() {
@@ -54,21 +55,21 @@ public class Contract {
         this.insuranceAmount = insuranceAmount;
     }
 
-    public Date getInsuranceDate() {
+    public Date  getInsuranceDate() {
         return insuranceDate;
     }
 
-    public void setInsuranceDate(Date insuranceDate) {
+    public void setInsuranceDate(Date  insuranceDate) {
         this.insuranceDate = insuranceDate;
     }
 
     public Contract() {
     }
 
-    public Contract(Integer id, Integer codeContract, String incuranceType, Double insuranceAmount, Date insuranceDate, Tariff tariff, Agent agent, Branch branch) {
+    public Contract(Integer id, Integer codeContract, String insuranceType, Double insuranceAmount, Date insuranceDate, Tariff tariff, Agent agent, Branch branch) {
         this.id = id;
         this.codeContract = codeContract;
-        this.incuranceType = incuranceType;
+        this.insuranceType = insuranceType;
         this.insuranceAmount = insuranceAmount;
         this.insuranceDate = insuranceDate;
         this.tariff = tariff;
@@ -76,8 +77,8 @@ public class Contract {
         this.branch = branch;
     }
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="codeTariff_id", unique = true, nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="codeTariff_id", nullable = false)
     private Tariff tariff;
 
     public Tariff getTariff() {
@@ -88,8 +89,8 @@ public class Contract {
         this.tariff = tariff;
     }
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="codeAgent_id", unique = true, nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="codeAgent_id", nullable = false)
     private Agent agent;
 
     public Agent getAgent() {
@@ -100,9 +101,8 @@ public class Contract {
         this.agent = agent;
     }
 
-
-    @OneToOne(optional = false)
-    @JoinColumn(name="codeBranch_id", unique = true, nullable=false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="codeBranch_id", nullable=false)
     private Branch branch;
 
     public Branch getBranch() {

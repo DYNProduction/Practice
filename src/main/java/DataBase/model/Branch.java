@@ -1,6 +1,9 @@
 package DataBase.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Branch {
@@ -26,7 +29,6 @@ public class Branch {
         this.name = name;
         this.adress = adress;
         this.number = number;
-        this.contract = contract;
     }
 
     public Integer getCodeBranch() {
@@ -79,14 +81,15 @@ public class Branch {
         this.number = number;
     }
 
-    @OneToOne(optional = false, mappedBy = "branch")
-    private Contract contract;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
+    private Set<Contract> contracts;
 
-    public Contract getContract() {
-        return contract;
+    @JsonIgnore
+    public Set<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
